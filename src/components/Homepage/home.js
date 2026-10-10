@@ -99,41 +99,41 @@ const HomePage = () => {
                 Session 03 — Working with ADO.NET and Entity Framework
               </Link>
             </li>
-            <li>
-              <Link to="/sessions/session-04">
-                Session 04 — Client-side Development Using ASP.NET Core MVC
-              </Link>
-            </li>
-            <li>
-              <Link to="/sessions/session-05">
-                Session 05 — More on ASP.NET MVC and Core MVC
-              </Link>
-            </li>
-            <li>
-              <Link to="/sessions/session-06">
-                Session 06 — Action Methods and Advanced Concepts in MVC
-              </Link>
-            </li>
-            <li>
-              <Link to="/sessions/session-07">
-                Session 07 — Enhancements in ASP.NET Core
-              </Link>
-            </li>
-            <li>
-              <Link to="/sessions/session-08">
-                Session 08 — .NET Core Architecture and Kestrel Web Server Implementation
-              </Link>
-            </li>
-            <li>
-              <Link to="/sessions/session-09">
-                Session 09 — Onion Architecture in ASP.NET Core – I
-              </Link>
-            </li>
-            <li>
-              <Link to="/sessions/session-10">
-                Session 10 — Onion Architecture in ASP.NET Core – II
-              </Link>
-            </li>
+            // <li>
+            //   <Link to="/sessions/session-04">
+            //     Session 04 — Client-side Development Using ASP.NET Core MVC
+            //   </Link>
+            // </li>
+            // <li>
+            //   <Link to="/sessions/session-05">
+            //     Session 05 — More on ASP.NET MVC and Core MVC
+            //   </Link>
+            // </li>
+            // <li>
+            //   <Link to="/sessions/session-06">
+            //     Session 06 — Action Methods and Advanced Concepts in MVC
+            //   </Link>
+            // </li>
+            // <li>
+            //   <Link to="/sessions/session-07">
+            //     Session 07 — Enhancements in ASP.NET Core
+            //   </Link>
+            // </li>
+            // <li>
+            //   <Link to="/sessions/session-08">
+            //     Session 08 — .NET Core Architecture and Kestrel Web Server Implementation
+            //   </Link>
+            // </li>
+            // <li>
+            //   <Link to="/sessions/session-09">
+            //     Session 09 — Onion Architecture in ASP.NET Core – I
+            //   </Link>
+            // </li>
+            // <li>
+            //   <Link to="/sessions/session-10">
+            //     Session 10 — Onion Architecture in ASP.NET Core – II
+            //   </Link>
+            // </li>
           </ul>
 
           <p style={{ marginTop: "1.5rem" }}>
