@@ -314,7 +314,7 @@ export default function Session01() {
             <li>True or False: ASP.NET Core can only run on Windows.</li>
           </ol>
 
-          <p><em>(Answers can be discussed in class or provided by the instructor in a separate key.)</em></p>
+          <p><em>(Answers will be discussed in class. Students can also find the answers at the end of this session.)</em></p>
 
           <hr />
 

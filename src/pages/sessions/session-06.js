@@ -371,7 +371,7 @@ public IActionResult Details(int id)
             <li>How can you return a file for download from a controller?</li>
           </ol>
 
-          <p><em>(Answers can be discussed in class or provided by the instructor.)</em></p>
+          <p><em>(Answers will be discussed in class. Students can also find the answers at the end of this session.)</em></p>
 
           <hr />
 

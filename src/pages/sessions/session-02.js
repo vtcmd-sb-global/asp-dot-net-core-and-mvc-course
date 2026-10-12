@@ -309,7 +309,7 @@ export default function Session02() {
             <li>True or False: ASP.NET Web Forms pages are processed entirely on the client side.</li>
           </ol>
 
-          <p><em>(Answers can be discussed in class or provided by the instructor.)</em></p>
+          <p><em>(Answers will be discussed in class. Students can also find the answers at the end of this session.)</em></p>
 
           <hr />
 
