@@ -11,18 +11,58 @@ import csharp from "react-syntax-highlighter/dist/cjs/languages/prism/csharp";
 // Register the language only once
 SyntaxHighlighter.registerLanguage("csharp", csharp);
 
+// const themes = {
+//   dark: {
+//     label: "Dark",
+//     bg: "#1E1E1E",
+//     text: "#D4D4D4",
+//     border: "#3A3A3A",
+//     keyword: "#C586C0",
+//     string: "#CE9178",
+//     className: "#4EC9B0",
+//     function: "#DCDCAA",
+//     identifier: "#9CDCFE",
+//     comment: "#6A9955",
+//   },
+//   light: {
+//     label: "Light",
+//     bg: "#FFFFFF",
+//     text: "#000000",
+//     border: "#D8D8D8",
+//     keyword: "#0000FF",
+//     string: "#A31515",
+//     className: "#267F99",
+//     function: "#795E26",
+//     identifier: "#001080",
+//     comment: "#008000",
+//   },
+//   blue: {
+//     label: "Blue",
+//     bg: "#FFFFFF",
+//     text: "#000000",
+//     border: "#B8C7E5",
+//     keyword: "#0000FF",
+//     string: "#A31515",
+//     className: "#267F99",
+//     function: "#795E26",
+//     identifier: "#001080",
+//     comment: "#008000",
+//   },
+// };
+
 const themes = {
   dark: {
     label: "Dark",
     bg: "#1E1E1E",
     text: "#D4D4D4",
     border: "#3A3A3A",
-    keyword: "#C586C0",
+    keyword: "#569CD6",      // ← changed to real VS blue
     string: "#CE9178",
     className: "#4EC9B0",
     function: "#DCDCAA",
     identifier: "#9CDCFE",
     comment: "#6A9955",
+    number: "#B5CEA8",       // added for better accuracy
   },
   light: {
     label: "Light",
@@ -35,6 +75,7 @@ const themes = {
     function: "#795E26",
     identifier: "#001080",
     comment: "#008000",
+    number: "#098658",
   },
   blue: {
     label: "Blue",
@@ -47,6 +88,7 @@ const themes = {
     function: "#795E26",
     identifier: "#001080",
     comment: "#008000",
+    number: "#098658",
   },
 };
 
@@ -76,7 +118,8 @@ function makeSyntaxStyle(theme) {
     function: { color: t.function },
     "attr-name": { color: t.identifier },
     boolean: { color: t.keyword },
-    number: { color: t.className },
+    // number: { color: t.className },
+    number: { color: t.number || t.className },
     operator: { color: t.text },
     punctuation: { color: t.text },
     variable: { color: t.identifier },
