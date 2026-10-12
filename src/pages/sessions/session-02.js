@@ -249,39 +249,43 @@ export default function Session02() {
           <p>A simple Web Form that greets the user:</p>
 
           <h3>ASPX Markup</h3>
-          <pre style={codeBlockStyle}>
-            <code>{`<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Default.aspx.cs" 
-    Inherits="WebFormsDemo.Default" %>
+          <CodeBlock 
+            language = "csharp"
+            code={`<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Default.aspx.cs" 
+                  Inherits="WebFormsDemo.Default" %>
 
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Simple Web Form</title>
-</head>
-<body>
-    <form id="form1" runat="server">
-        <div>
-            <asp:Label ID="Label1" runat="server" Text="Enter your name:"></asp:Label>
-            <br />
-            <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
-            <br /><br />
-            <asp:Button ID="Button1" runat="server" Text="Greet Me" 
-                OnClick="Button1_Click" />
-            <br /><br />
-            <asp:Label ID="Label2" runat="server" ForeColor="Blue"></asp:Label>
-        </div>
-    </form>
-</body>
-</html>`}</code>
-          </pre>
+              <!DOCTYPE html>
+              <html>
+              <head>
+                  <title>Simple Web Form</title>
+              </head>
+              <body>
+                  <form id="form1" runat="server">
+                      <div>
+                          <asp:Label ID="Label1" runat="server" Text="Enter your name:"></asp:Label>
+                          <br />
+                          <asp:TextBox ID="TextBox1" runat="server"></asp:TextBox>
+                          <br /><br />
+                          <asp:Button ID="Button1" runat="server" Text="Greet Me" 
+                              OnClick="Button1_Click" />
+                          <br /><br />
+                          <asp:Label ID="Label2" runat="server" ForeColor="Blue"></asp:Label>
+                      </div>
+                  </form>
+              </body>
+              </html>`}
+              caption="Interactive preview: switch between themes to see the same C# snippet restyled."/>
 
           <h3>Code-Behind (C#)</h3>
-          <pre style={codeBlockStyle}>
-            <code>{`protected void Button1_Click(object sender, EventArgs e)
-{
-    Label2.Text = "Welcome, " + TextBox1.Text + "!";
-}`}</code>
-          </pre>
+          <CodeBlock
+           language="csharp"
+           code={`protected void Button1_Click(object sender, EventArgs e)
+                {
+                    Label2.Text = "Welcome, " + TextBox1.Text + "!";
+                }`
+            }
+           caption="Interactive preview: switch between themes to see the same C# snippet restyled."
+          />
 
           <hr />
 

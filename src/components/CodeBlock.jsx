@@ -1,7 +1,14 @@
-import { useEffect, useState } from "react";
-import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
-import csharp from "react-syntax-highlighter/dist/esm/languages/prism/csharp";
+// import { useEffect, useState } from "react";
+// import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
+// import csharp from "react-syntax-highlighter/dist/esm/languages/prism/csharp";
 
+// SyntaxHighlighter.registerLanguage("csharp", csharp);
+
+import { useEffect, useState } from "react";
+import { PrismLight as SyntaxHighlighter } from "react-syntax-highlighter";
+import csharp from "react-syntax-highlighter/dist/cjs/languages/prism/csharp";
+
+// Register the language only once
 SyntaxHighlighter.registerLanguage("csharp", csharp);
 
 const themes = {
