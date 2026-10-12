@@ -11,6 +11,7 @@ export const sidebarItems = [
       { title: "Session 03 — Working with ADO.NET and Entity Framework", path: "/sessions/session-03" },
       { title: "Session 04 — Client-side Development Using ASP.NET Core MVC", path: "/sessions/session-04" },
       { title: "Session 05 — More on ASP.NET MVC and Core MVC", path: "/sessions/session-05" },
+      { title: "Session 06 — Action Methods and Advanced Concepts in MVC", path: "/sessions/session-06" },
     ],
   },
 ];
