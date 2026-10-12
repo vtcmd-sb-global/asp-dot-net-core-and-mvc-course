@@ -1,19 +1,30 @@
 import React from 'react';
 import Layout from '@theme/Layout';
 import CustomLayout from '@site/src/components/Layout/Layout';
+//import CodeBlock from '../../components/CodeBlock';
+import CodeBlock from '@site/src/components/CodeBlock';
 
 export default function Session02() {
-  const codeBlockStyle = {
-    backgroundColor: '#1e1e1e',
-    color: '#d4d4d4',
-    padding: '12px 16px',
-    borderRadius: '6px',
-    fontFamily: 'Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace',
-    fontSize: '0.9rem',
-    overflowX: 'auto',
-    lineHeight: '1.5',
-    margin: '12px 0 24px 0'
-  };
+  // const codeBlockStyle = {
+  //   backgroundColor: '#1e1e1e',
+  //   color: '#d4d4d4',
+  //   padding: '12px 16px',
+  //   borderRadius: '6px',
+  //   fontFamily: 'Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace',
+  //   fontSize: '0.9rem',
+  //   overflowX: 'auto',
+  //   lineHeight: '1.5',
+  //   margin: '12px 0 24px 0'
+  // };
+
+  // const inlineCodeStyle = {
+  //   backgroundColor: '#f4f4f4',
+  //   color: '#d10057',
+  //   padding: '2px 6px',
+  //   borderRadius: '4px',
+  //   fontFamily: 'Consolas, Monaco, monospace',
+  //   fontSize: '0.9em'
+  // };
 
   return (
     <Layout
@@ -171,12 +182,20 @@ export default function Session02() {
           </ul>
 
           <h3>Simple Example – Button Click Event</h3>
-          <pre style={codeBlockStyle}>
+          {/* <pre style={codeBlockStyle}>
             <code>{`protected void Button1_Click(object sender, EventArgs e)
 {
     Label1.Text = "Hello, " + TextBox1.Text + "!";
 }`}</code>
-          </pre>
+          </pre> */}
+
+          <CodeBlock 
+            language="csharp"
+            code={`protected void Button1_Click(object sender, EventArgs e)
+              {
+                  Label1.Text = "Hello, " + TextBox1.Text + "!";
+              }`}
+            caption="Interactive preview: switch between themes to see the same C# snippet restyled."/>
           <p>
             In the example above, when the user clicks the button, the text from a TextBox
             is read and displayed in a Label.
