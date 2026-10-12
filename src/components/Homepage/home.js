@@ -104,6 +104,11 @@ const HomePage = () => {
                 Session 04 — Client-side Development Using ASP.NET Core MVC
               </Link>
             </li>
+            <li>
+              <Link to="/sessions/session-05">
+                Session 05 — More on ASP.NET MVC and Core MVC
+              </Link>
+            </li>
           </ul>
 
           <p style={{ marginTop: "1.5rem" }}>
