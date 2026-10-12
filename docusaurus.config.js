@@ -60,7 +60,7 @@ const config = {
         respectPrefersColorScheme: false,
       },     
       navbar: {
-        title: 'Proficient Programming with C#',
+        title: 'Web Programming Using ASP.NET Core and MVC',
         logo: {
           alt: 'ASP.NET Core and MVC Course Logo',
           src: 'img/logo.jpg', // optional – remove if you don’t have a logo
