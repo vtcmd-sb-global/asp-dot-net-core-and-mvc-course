@@ -99,7 +99,11 @@ const HomePage = () => {
                 Session 03 — Working with ADO.NET and Entity Framework
               </Link>
             </li>
-            
+            <li>
+              <Link to="/sessions/session-04">
+                Session 04 — Client-side Development Using ASP.NET Core MVC
+              </Link>
+            </li>
           </ul>
 
           <p style={{ marginTop: "1.5rem" }}>
