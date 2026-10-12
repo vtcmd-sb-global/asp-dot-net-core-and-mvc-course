@@ -27,7 +27,7 @@ export default function Session02() {
 
           <p><strong>Duration:</strong> 2 hours</p>
           <p><strong>Focus:</strong> Understand Web application development, ASP.NET Web Forms, server controls, and event handling.</p>
-          <p><strong>Based on:</strong> Official Aptech Book – Session 2</p>
+          <p><strong>Based on:</strong> Official Book – Session 2</p>
 
           <hr />
 

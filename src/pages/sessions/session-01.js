@@ -48,7 +48,7 @@ export default function Session01() {
 
           <p><strong>Duration:</strong> 2 hours</p>
           <p><strong>Focus:</strong> Understand ASP.NET, its history, frameworks, page lifecycle, and the advantages of ASP.NET Core.</p>
-          <p><strong>Based on:</strong> Official Aptech Book – Session 1</p>
+          <p><strong>Based on:</strong> Official Book – Session 1</p>
 
           <hr />
 

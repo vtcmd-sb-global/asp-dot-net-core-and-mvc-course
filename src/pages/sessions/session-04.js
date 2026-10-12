@@ -26,7 +26,7 @@ export default function Session04() {
 
           <p><strong>Duration:</strong> 2 hours</p>
           <p><strong>Focus:</strong> Understand the ASP.NET Core MVC pattern, project structure, Razor views, layouts, and basic client-side development.</p>
-          <p><strong>Based on:</strong> Official Aptech Book – Session 4</p>
+          <p><strong>Based on:</strong> Official Book – Session 4</p>
 
           <hr />
 

@@ -27,7 +27,7 @@ export default function Session03() {
 
           <p><strong>Duration:</strong> 2 hours</p>
           <p><strong>Focus:</strong> Understand data access with ADO.NET and modern data access using Entity Framework Core (Code-First approach).</p>
-          <p><strong>Based on:</strong> Official Aptech Book – Session 3</p>
+          <p><strong>Based on:</strong> Official Book – Session 3</p>
 
           <hr />
 

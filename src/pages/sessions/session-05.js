@@ -26,7 +26,7 @@ export default function Session05() {
 
           <p><strong>Duration:</strong> 2 hours</p>
           <p><strong>Focus:</strong> Learn routing, Tag Helpers, model binding, working with forms, and creating strongly-typed views in ASP.NET Core MVC.</p>
-          <p><strong>Based on:</strong> Official Aptech Book – Session 5</p>
+          <p><strong>Based on:</strong> Official Book – Session 5</p>
 
           <hr />
 
