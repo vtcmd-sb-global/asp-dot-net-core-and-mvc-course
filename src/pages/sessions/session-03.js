@@ -1,20 +1,10 @@
 import React from 'react';
 import Layout from '@theme/Layout';
 import CustomLayout from '@site/src/components/Layout/Layout';
+//import CodeBlock from '../../components/CodeBlock';
+import CodeBlock from '@site/src/components/CodeBlock';
 
 export default function Session03() {
-  const codeBlockStyle = {
-    backgroundColor: '#1e1e1e',
-    color: '#d4d4d4',
-    padding: '12px 16px',
-    borderRadius: '6px',
-    fontFamily: 'Consolas, Monaco, "Andale Mono", "Ubuntu Mono", monospace',
-    fontSize: '0.9rem',
-    overflowX: 'auto',
-    lineHeight: '1.5',
-    margin: '12px 0 24px 0'
-  };
-
   return (
     <Layout
       title="Session 03 — Working with ADO.NET and Entity Framework"
@@ -147,8 +137,9 @@ export default function Session03() {
           <h3>4.2 Create a Model Class</h3>
           <p>Add a new class under the <code>Models</code> folder (example: <code>Customer.cs</code>):</p>
 
-          <pre style={codeBlockStyle}>
-            <code>{`namespace MyCodeFirstApproachDemo.Models
+          <CodeBlock
+            language="csharp"
+            code={`namespace MyCodeFirstApproachDemo.Models
 {
     public class Customer
     {
@@ -157,14 +148,14 @@ export default function Session03() {
         public string Email { get; set; }
         public string City { get; set; }
     }
-}`}</code>
-          </pre>
+}`}caption="Interactive preview: switch between themes to see the same C# snippet restyled."/>
 
           <h3>4.3 Create the DbContext</h3>
           <p>Create a class that inherits from <code>DbContext</code>:</p>
 
-          <pre style={codeBlockStyle}>
-            <code>{`using Microsoft.EntityFrameworkCore;
+          <CodeBlock
+            language="csharp"
+            code={`using Microsoft.EntityFrameworkCore;
 using MyCodeFirstApproachDemo.Models;
 
 namespace MyCodeFirstApproachDemo.Data
@@ -178,23 +169,23 @@ namespace MyCodeFirstApproachDemo.Data
 
         public DbSet<Customer> Customers { get; set; }
     }
-}`}</code>
-          </pre>
+}`}caption="Interactive preview: switch between themes to see the same C# snippet restyled."/>
 
           <h3>4.4 Register the DbContext in Program.cs</h3>
-          <pre style={codeBlockStyle}>
-            <code>{`builder.Services.AddDbContext<ApplicationDbContext>(options =>
-    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));`}</code>
-          </pre>
+          <CodeBlock
+            language="csharp"
+            code={`builder.Services.AddDbContext<ApplicationDbContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection")));`}
+    caption="Interactive preview: switch between themes to see the same C# snippet restyled."/>
 
           <h3>4.5 Add Connection String in appsettings.json</h3>
-          <pre style={codeBlockStyle}>
-            <code>{`{
+          <CodeBlock
+            language="csharp"
+            code={`{
   "ConnectionStrings": {
     "DefaultConnection": "Server=(localdb)\\\\mssqllocaldb;Database=CustomerDb;Trusted_Connection=True;MultipleActiveResultSets=true"
   }
-}`}</code>
-          </pre>
+}`}caption="Interactive preview: switch between themes to see the same C# snippet restyled."/>
 
           <hr />
 
@@ -202,24 +193,27 @@ namespace MyCodeFirstApproachDemo.Data
           <p>Migrations allow EF Core to create and update the database schema based on your model classes.</p>
 
           <h3>Common Commands (Package Manager Console)</h3>
-          <pre style={codeBlockStyle}>
-            <code>{`Add-Migration InitialCreate
-Update-Database`}</code>
-          </pre>
+          <CodeBlock
+            language="csharp"
+            code={`Add-Migration InitialCreate
+Update-Database`}
+caption="Interactive preview: switch between themes to see the same C# snippet restyled."/>
 
           <p>Or using the .NET CLI:</p>
-          <pre style={codeBlockStyle}>
-            <code>{`dotnet ef migrations add InitialCreate
-dotnet ef database update`}</code>
-          </pre>
+          <CodeBlock
+            language="csharp"
+            code={`dotnet ef migrations add InitialCreate
+dotnet ef database update`}
+caption="Interactive preview: switch between themes to see the same C# snippet restyled."/>
 
           <hr />
 
           <h2>6. Basic CRUD Operations with EF Core</h2>
 
           <h3>Create (Insert)</h3>
-          <pre style={codeBlockStyle}>
-            <code>{`var customer = new Customer
+          <CodeBlock
+            language="csharp"
+            code={`var customer = new Customer
 {
     Name = "Ali Khan",
     Email = "ali@example.com",
@@ -227,35 +221,36 @@ dotnet ef database update`}</code>
 };
 
 _context.Customers.Add(customer);
-await _context.SaveChangesAsync();`}</code>
-          </pre>
+await _context.SaveChangesAsync();`}
+caption="Interactive preview: switch between themes to see the same C# snippet restyled."/>
 
           <h3>Read (Select)</h3>
-          <pre style={codeBlockStyle}>
-            <code>{`var customers = await _context.Customers.ToListAsync();
+          <CodeBlock
+            language="csharp"
+            code={`var customers = await _context.Customers.ToListAsync();
 
-var customer = await _context.Customers.FindAsync(1);`}</code>
-          </pre>
+var customer = await _context.Customers.FindAsync(1);`}
+caption="Interactive preview: switch between themes to see the same C# snippet restyled."/>
 
           <h3>Update</h3>
-          <pre style={codeBlockStyle}>
-            <code>{`var customer = await _context.Customers.FindAsync(1);
+          <CodeBlock
+            language="csharp"
+            code={`var customer = await _context.Customers.FindAsync(1);
 if (customer != null)
 {
     customer.City = "Lahore";
     await _context.SaveChangesAsync();
-}`}</code>
-          </pre>
+}`}caption="Interactive preview: switch between themes to see the same C# snippet restyled."/>
 
           <h3>Delete</h3>
-          <pre style={codeBlockStyle}>
-            <code>{`var customer = await _context.Customers.FindAsync(1);
+          <CodeBlock
+            language="csharp"
+            code={`var customer = await _context.Customers.FindAsync(1);
 if (customer != null)
 {
     _context.Customers.Remove(customer);
     await _context.SaveChangesAsync();
-}`}</code>
-          </pre>
+}`}caption="Interactive preview: switch between themes to see the same C# snippet restyled."/>
 
           <hr />
 
