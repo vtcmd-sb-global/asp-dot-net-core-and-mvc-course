@@ -99,6 +99,37 @@ export default function Session01() {
             It was first released in 2016 as a redesigned version of earlier Windows-only versions of ASP.NET.
           </p>
 
+          <h3>2.1 Classic ASP vs ASP.NET – Quick Code Comparison</h3>
+          <p>Classic ASP (1996–2000s) mixed HTML and VBScript/JScript:</p>
+
+          <CodeBlock
+            language="csharp"
+            code={`<%
+  Dim name
+  name = Request.QueryString("name")
+  If name = "" Then
+    name = "Guest"
+  End If
+%>
+<html>
+<body>
+  <h1>Hello, <%= name %>!</h1>
+</body>
+</html>`}
+          />
+
+          <p>ASP.NET (from 2002) introduced compiled code-behind and strong typing:</p>
+
+          <CodeBlock
+            language="csharp"
+            code={`// Default.aspx.cs (Code-behind)
+protected void Page_Load(object sender, EventArgs e)
+{
+    string name = Request.QueryString["name"] ?? "Guest";
+    Label1.Text = "Hello, " + name + "!";
+}`} 
+          />
+
           <hr />
 
           <h2>3. History of ASP.NET</h2>
@@ -176,6 +207,8 @@ export default function Session01() {
             </tbody>
           </table>
 
+          <p><strong>Updated note (2024–2026):</strong> .NET 8 (LTS) was released in November 2023 and .NET 9 in November 2024. Always prefer the latest LTS version for new projects.</p>
+
           <hr />
 
           <h2>4. ASP.NET Frameworks Overview</h2>
@@ -210,6 +243,62 @@ export default function Session01() {
             <code>control events</code> (e.g. Button_Click), and <code>Page_PreRender</code>.
           </p>
 
+          <h3>5.1 Detailed Page Lifecycle with Code</h3>
+          <p>Here is a practical example showing the most commonly used events:</p>
+
+          <CodeBlock
+            language="csharp"
+            code={`public partial class Default : System.Web.UI.Page
+{
+    protected void Page_PreInit(object sender, EventArgs e)
+    {
+        // Very early – theme and master page can still be set here
+        Response.Write("Page_PreInit<br/>");
+    }
+
+    protected void Page_Init(object sender, EventArgs e)
+    {
+        // Controls are created and initialized
+        Response.Write("Page_Init<br/>");
+    }
+
+    protected void Page_Load(object sender, EventArgs e)
+    {
+        // Most common place for initialization logic
+        if (!IsPostBack)
+        {
+            // Code that should run only on first load
+            Label1.Text = "Welcome! First visit.";
+        }
+        else
+        {
+            Label1.Text = "This is a postback.";
+        }
+        Response.Write("Page_Load<br/>");
+    }
+
+    protected void Button1_Click(object sender, EventArgs e)
+    {
+        // Control event – runs after Page_Load on postback
+        Label2.Text = "Button was clicked!";
+        Response.Write("Button1_Click<br/>");
+    }
+
+    protected void Page_PreRender(object sender, EventArgs e)
+    {
+        // Last chance to change control values before rendering
+        Response.Write("Page_PreRender<br/>");
+    }
+
+    protected void Page_Unload(object sender, EventArgs e)
+    {
+        // Cleanup – Response is already sent, so do not write to page
+    }
+}`} 
+          />
+
+          <p><strong>Important:</strong> Always check <code>IsPostBack</code> inside <code>Page_Load</code> to avoid re-running initialization code on every button click.</p>
+
           <hr />
 
           <h2>6. Features and Advantages of ASP.NET</h2>
@@ -221,6 +310,16 @@ export default function Session01() {
             <li>Security features (authentication, authorization)</li>
             <li>Caching and performance tools</li>
           </ul>
+
+          <h3>6.1 ViewState Example (Classic ASP.NET)</h3>
+          <CodeBlock
+            language="csharp"
+            code={`// Storing a value in ViewState
+ViewState["Counter"] = 10;
+
+// Retrieving it later
+int counter = (int)ViewState["Counter"];`} 
+          />
 
           <hr />
 
@@ -277,6 +376,67 @@ export default function Session01() {
             </tbody>
           </table>
 
+          <h3>7.3 Your First ASP.NET Core Application (Minimal API)</h3>
+          <p>The simplest possible ASP.NET Core app (Modern .NET style):</p>
+
+          <CodeBlock
+            language="csharp"
+            code={`// Program.cs
+var builder = WebApplication.CreateBuilder(args);
+var app = builder.Build();
+
+app.MapGet("/", () => "Hello from ASP.NET Core!");
+app.MapGet("/hello/{name}", (string name) => $"Hello, {name}!");
+
+app.Run();`} 
+          />
+
+          <p>Run it with:</p>
+          <CodeBlock
+            language="csharp"
+            code={`dotnet new web -n MyFirstApp
+cd MyFirstApp
+dotnet run`} 
+          />
+
+          <h3>7.4 First ASP.NET Core MVC Project (CLI)</h3>
+          <CodeBlock
+            language="csharp"
+            code={`dotnet new mvc -n MvcDemo
+cd MvcDemo
+dotnet run`} 
+          />
+
+          <p>This creates a complete MVC project with Controllers, Views, Models, and wwwroot folders.</p>
+
+          <h3>7.5 Basic Middleware Pipeline Example</h3>
+          <CodeBlock
+            language="csharp"
+            code={`var builder = WebApplication.CreateBuilder(args);
+var app = builder.Build();
+
+// Custom middleware
+app.Use(async (context, next) =>
+{
+    Console.WriteLine("Request started: " + context.Request.Path);
+    await next();
+    Console.WriteLine("Request finished");
+});
+
+app.MapGet("/", () => "Hello World");
+app.Run();`} 
+          />
+
+          <h3>7.6 Built-in Dependency Injection Example</h3>
+          <CodeBlock
+            language="csharp"
+            code={`// Register a service
+builder.Services.AddSingleton<IMyService, MyService>();
+
+// Use it in a controller or Minimal API
+app.MapGet("/time", (IMyService service) => service.GetCurrentTime());`} 
+          />
+
           <hr />
 
           <h2>8. Features of ASP.NET Core 7.0 (as covered in the book)</h2>
@@ -286,6 +446,15 @@ export default function Session01() {
             <li>Better support for cloud-native development</li>
             <li>Updated project templates</li>
             <li>Continued unification of MVC and Web API</li>
+          </ul>
+
+          <h3>8.1 Additional Modern Features (Post .NET 7)</h3>
+          <ul>
+            <li>Native AOT support (smaller, faster apps)</li>
+            <li>Improved Blazor (Blazor United / Blazor Web Apps)</li>
+            <li>Rate limiting middleware</li>
+            <li>Output caching</li>
+            <li>Better OpenAPI / Swagger integration</li>
           </ul>
 
           <hr />
@@ -349,6 +518,29 @@ export default function Session01() {
             <li>Open-source status</li>
             <li>Recommended for new projects?</li>
           </ul>
+
+          <h3>Exercise 4 – Create Your First Minimal API (New)</h3>
+          <ol>
+            <li>Open a terminal.</li>
+            <li>Run the following commands:</li>
+          </ol>
+
+          <CodeBlock
+            language="csharp"
+            code={`dotnet new web -n HelloCore
+cd HelloCore
+dotnet run`} 
+          />
+
+          <p>Open the browser at the URL shown (usually https://localhost:5xxx) and verify you see the default message.</p>
+
+          <h3>Exercise 5 – Explore Page Lifecycle (Classic)</h3>
+          <p>If you have Visual Studio with .NET Framework support:</p>
+          <ol>
+            <li>Create a new ASP.NET Web Forms project.</li>
+            <li>Add the lifecycle event handlers shown in section 5.1.</li>
+            <li>Run the page and observe the order of events in the browser output.</li>
+          </ol>
 
           <p>
             <strong>Next Session:</strong> Working with ASP.NET Web Forms, Controls, and Events
