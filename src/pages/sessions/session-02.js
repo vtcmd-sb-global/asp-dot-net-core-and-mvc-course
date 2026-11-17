@@ -124,6 +124,17 @@ export default function Session02() {
             This workload includes the templates and tools needed for Web Forms, MVC, and related technologies.
           </p>
 
+          <h3>3.1 Creating a Web Forms Project (Step-by-Step)</h3>
+          <ol>
+            <li>Open Visual Studio 2022</li>
+            <li>Click <strong>Create a new project</strong></li>
+            <li>Search for <strong>ASP.NET Web Application (.NET Framework)</strong></li>
+            <li>Choose the template and click Next</li>
+            <li>Name the project (example: <code>WebFormsDemo</code>)</li>
+            <li>Select .NET Framework 4.8 (or the highest available)</li>
+            <li>On the next screen choose <strong>Web Forms</strong> and click Create</li>
+          </ol>
+
           <hr />
 
           <h2>4. ASP.NET Web Forms in Detail</h2>
@@ -171,14 +182,62 @@ export default function Session02() {
           <CodeBlock 
             language="csharp"
             code={`protected void Button1_Click(object sender, EventArgs e)
-              {
-                  Label1.Text = "Hello, " + TextBox1.Text + "!";
-              }`}
-            caption="Interactive preview: switch between themes to see the same C# snippet restyled."/>
+{
+    Label1.Text = "Hello, " + TextBox1.Text + "!";
+}`}
+          />
           <p>
             In the example above, when the user clicks the button, the text from a TextBox
             is read and displayed in a Label.
           </p>
+
+          <h3>5.1 Full Working Example – Greeting Form</h3>
+          <p><strong>ASPX Markup:</strong></p>
+          <CodeBlock
+            language="csharp"
+            code={`<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Default.aspx.cs" 
+    Inherits="WebFormsDemo.Default" %>
+
+<!DOCTYPE html>
+<html>
+<head runat="server">
+    <title>Greeting Form</title>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div>
+            <asp:Label ID="Label1" runat="server" Text="Enter your name:"></asp:Label>
+            <br /><br />
+            <asp:TextBox ID="txtName" runat="server" Width="250px"></asp:TextBox>
+            <br /><br />
+            <asp:Button ID="btnGreet" runat="server" Text="Greet Me" 
+                OnClick="btnGreet_Click" />
+            <br /><br />
+            <asp:Label ID="lblResult" runat="server" Font-Bold="true" 
+                ForeColor="DarkBlue"></asp:Label>
+        </div>
+    </form>
+</body>
+</html>`}
+          />
+
+          <p><strong>Code-Behind (C#):</strong></p>
+          <CodeBlock
+            language="csharp"
+            code={`protected void btnGreet_Click(object sender, EventArgs e)
+{
+    if (string.IsNullOrWhiteSpace(txtName.Text))
+    {
+        lblResult.Text = "Please enter your name!";
+        lblResult.ForeColor = System.Drawing.Color.Red;
+    }
+    else
+    {
+        lblResult.Text = "Welcome, " + txtName.Text.Trim() + "!";
+        lblResult.ForeColor = System.Drawing.Color.DarkBlue;
+    }
+}`} 
+          />
 
           <hr />
 
@@ -222,6 +281,60 @@ export default function Session02() {
             <li>Login, LoginView, PasswordRecovery, etc.</li>
           </ul>
 
+          <h3>6.5 Practical Examples of Common Controls</h3>
+
+          <p><strong>DropDownList Example:</strong></p>
+          <CodeBlock
+            language="csharp"
+            code={`// ASPX
+<asp:DropDownList ID="ddlCities" runat="server" AutoPostBack="true"
+    OnSelectedIndexChanged="ddlCities_SelectedIndexChanged">
+    <asp:ListItem Text="-- Select City --" Value="" />
+    <asp:ListItem Text="Karachi" Value="KHI" />
+    <asp:ListItem Text="Lahore" Value="LHE" />
+    <asp:ListItem Text="Islamabad" Value="ISB" />
+</asp:DropDownList>
+
+<asp:Label ID="lblCity" runat="server"></asp:Label>
+
+// Code-behind
+protected void ddlCities_SelectedIndexChanged(object sender, EventArgs e)
+{
+    if (ddlCities.SelectedValue != "")
+    {
+        lblCity.Text = "You selected: " + ddlCities.SelectedItem.Text;
+    }
+}`} 
+          />
+
+          <p><strong>CheckBoxList Example:</strong></p>
+          <CodeBlock
+            language="csharp"
+            code={`<asp:CheckBoxList ID="chkHobbies" runat="server">
+    <asp:ListItem Text="Reading" />
+    <asp:ListItem Text="Sports" />
+    <asp:ListItem Text="Music" />
+    <asp:ListItem Text="Traveling" />
+</asp:CheckBoxList>
+
+<asp:Button ID="btnShow" runat="server" Text="Show Selected" 
+    OnClick="btnShow_Click" />
+
+<asp:Label ID="lblHobbies" runat="server"></asp:Label>
+
+// Code-behind
+protected void btnShow_Click(object sender, EventArgs e)
+{
+    string selected = "";
+    foreach (ListItem item in chkHobbies.Items)
+    {
+        if (item.Selected)
+            selected += item.Text + ", ";
+    }
+    lblHobbies.Text = selected.TrimEnd(',', ' ');
+}`} 
+          />
+
           <hr />
 
           <h2>7. Basic Web Forms Example</h2>
@@ -253,17 +366,79 @@ export default function Session02() {
                   </form>
               </body>
               </html>`}
-              caption="Interactive preview: switch between themes to see the same C# snippet restyled."/>
+          />
 
           <h3>Code-Behind (C#)</h3>
           <CodeBlock
            language="csharp"
            code={`protected void Button1_Click(object sender, EventArgs e)
-                {
-                    Label2.Text = "Welcome, " + TextBox1.Text + "!";
-                }`
-            }
-           caption="Interactive preview: switch between themes to see the same C# snippet restyled."
+{
+    Label2.Text = "Welcome, " + TextBox1.Text + "!";
+}`}
+          />
+
+          <h3>7.1 Adding Validation Controls (Important)</h3>
+          <p>Always validate user input. Here is a complete example with RequiredFieldValidator and ValidationSummary:</p>
+
+          <CodeBlock
+            language="csharp"
+            code={`<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Register.aspx.cs" 
+    Inherits="WebFormsDemo.Register" %>
+
+<!DOCTYPE html>
+<html>
+<head runat="server">
+    <title>Registration Form</title>
+</head>
+<body>
+    <form id="form1" runat="server">
+        <div>
+            <h2>Student Registration</h2>
+
+            <asp:ValidationSummary ID="ValidationSummary1" runat="server" 
+                ForeColor="Red" HeaderText="Please fix the following errors:" />
+
+            <asp:Label ID="lblName" runat="server" Text="Full Name:"></asp:Label>
+            <asp:TextBox ID="txtName" runat="server"></asp:TextBox>
+            <asp:RequiredFieldValidator ID="rfvName" runat="server" 
+                ControlToValidate="txtName"
+                ErrorMessage="Name is required" 
+                ForeColor="Red" Display="Dynamic">*</asp:RequiredFieldValidator>
+            <br /><br />
+
+            <asp:Label ID="lblEmail" runat="server" Text="Email:"></asp:Label>
+            <asp:TextBox ID="txtEmail" runat="server"></asp:TextBox>
+            <asp:RequiredFieldValidator ID="rfvEmail" runat="server" 
+                ControlToValidate="txtEmail"
+                ErrorMessage="Email is required" 
+                ForeColor="Red" Display="Dynamic">*</asp:RequiredFieldValidator>
+            <asp:RegularExpressionValidator ID="revEmail" runat="server"
+                ControlToValidate="txtEmail"
+                ValidationExpression="\\w+([-+.']\\w+)*@\\w+([-.]\\w+)*\\.\\w+([-.]\\w+)*"
+                ErrorMessage="Invalid email format"
+                ForeColor="Red" Display="Dynamic">*</asp:RegularExpressionValidator>
+            <br /><br />
+
+            <asp:Button ID="btnSubmit" runat="server" Text="Register" 
+                OnClick="btnSubmit_Click" />
+            <br /><br />
+            <asp:Label ID="lblMessage" runat="server" Font-Bold="true"></asp:Label>
+        </div>
+    </form>
+</body>
+</html>`}
+          />
+
+          <CodeBlock
+            language="csharp"
+            code={`protected void btnSubmit_Click(object sender, EventArgs e)
+{
+    if (Page.IsValid)
+    {
+        lblMessage.Text = "Registration successful for " + txtName.Text;
+        lblMessage.ForeColor = System.Drawing.Color.Green;
+    }
+}`} 
           />
 
           <hr />
@@ -282,6 +457,21 @@ export default function Session02() {
             These topics will be covered in more depth in later sessions when we work with
             ASP.NET Core and modern authentication.
           </p>
+
+          <h3>8.1 Simple Web API Style Endpoint (for understanding)</h3>
+          <p>In modern ASP.NET Core we create APIs like this (preview for later sessions):</p>
+
+          <CodeBlock
+            language="csharp"
+            code={`// Minimal API style
+app.MapGet("/api/students", () =>
+{
+    return new[] {
+        new { Id = 1, Name = "Ali" },
+        new { Id = 2, Name = "Sara" }
+    };
+});`} 
+          />
 
           <hr />
 
@@ -346,6 +536,17 @@ export default function Session02() {
             <li>A Label to show the result</li>
           </ul>
           <p>Handle the click events for each button and display the correct result.</p>
+
+          <h3>Exercise 4 – Registration Form with Validation (New)</h3>
+          <p>Create a registration form that includes:</p>
+          <ul>
+            <li>Name (Required)</li>
+            <li>Email (Required + Email format validation)</li>
+            <li>Age (RangeValidator: 18–60)</li>
+            <li>A Submit button</li>
+            <li>ValidationSummary at the top</li>
+          </ul>
+          <p>Only show a success message when <code>Page.IsValid</code> is true.</p>
 
           <p>
             <strong>Next Session:</strong> Working with ADO.NET and Entity Framework
